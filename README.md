@@ -1,2 +1,2 @@
-#Color Candy Calculator
+# Color Candy Calculator
 A Simple Calculator application for android
