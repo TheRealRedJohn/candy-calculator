@@ -1,7 +1,9 @@
 package com.example.android.colorcandycalc;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.TextView;
 
@@ -9,7 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 
-import java.util.regex.Pattern;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 /**
  * Driver class responsible for performing operations and displaying keystrokes and results
@@ -21,23 +25,41 @@ public class MainActivity extends AppCompatActivity {
     private final static short MULTIPLICATION = 3;
     private final static short DIVISION = 4;
 
-    private static int currentOperator = 0;
+    private static short operator = 0;
+    private static int opLocation = 0;
     private boolean hasOperator = false;
 
     private TextView inputEditText; // input on display
     private TextView outputTextView; // output on display
 
-    private String display = "";
-    private String prevAnswer = "";
+    private String operand1 = "";
+    private String operand2 = "";
+    private double answer = 0.0;
+
+    private DecimalFormat decimalFormat;
+
+    private boolean clickedDelete = false;
+    private boolean _ignore = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
+        symbols.setDecimalSeparator('.');
+        symbols.setGroupingSeparator(',');
+
+        decimalFormat = new DecimalFormat();
+        decimalFormat.setMaximumFractionDigits(12);
+        decimalFormat.setGroupingUsed(true);
+
         // Calculator display
         inputEditText = findViewById(R.id.text_view_input);
         outputTextView = findViewById(R.id.text_view_output);
+
+        clear();
+        updateOutputScreen();
 
         // Numbers
         MaterialButton buttonOne = findViewById(R.id.button_one);
@@ -55,67 +77,75 @@ public class MainActivity extends AppCompatActivity {
         buttonOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickKey('1');
+                inputEditText.append("1");
             }
         });
         buttonTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickKey('2');
+                inputEditText.append("2");
             }
         });
         buttonThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickKey('3');
+                inputEditText.append("3");
             }
         });
         buttonFour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickKey('4');
+                inputEditText.append("4");
             }
         });
         buttonFive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickKey('5');
+                inputEditText.append("5");
             }
         });
         buttonSix.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickKey('6');
+                inputEditText.append("6");
             }
         });
         buttonSeven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickKey('7');
+                inputEditText.append("7");
             }
         });
         buttonEight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickKey('8');
+                inputEditText.append("8");
             }
         });
         buttonNine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickKey('9');
+                inputEditText.append("9");
             }
         });
         buttonZero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickKey('0');
+                inputEditText.append("0");
             }
         });
         buttonDecimal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickKey('.');
+                String appendExpr = inputEditText.getText().toString();
+
+                if (TextUtils.isEmpty(appendExpr)) inputEditText.append("0");
+                // don't allow two decimals in the same number
+                final int index = appendExpr.lastIndexOf('.');
+                if (index != -1 && TextUtils.isDigitsOnly(appendExpr.substring(index + 1))) {
+                    return;
+                }
+                inputEditText.append(".");
             }
         });
 
@@ -133,25 +163,29 @@ public class MainActivity extends AppCompatActivity {
         buttonAddition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickOperator(ADDITION);
+                if (TextUtils.isEmpty(inputEditText.getText())) inputEditText.append("0");
+                inputEditText.append("+");
             }
         });
         buttonSubtraction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickOperator(SUBTRACTION);
+                if (TextUtils.isEmpty(inputEditText.getText())) inputEditText.append("0");
+                inputEditText.append("−");
             }
         });
         buttonMultiplication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickOperator(MULTIPLICATION);
+                if (TextUtils.isEmpty(inputEditText.getText())) inputEditText.append("0");
+                inputEditText.append("×");
             }
         });
         buttonDivision.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickOperator(DIVISION);
+                if (TextUtils.isEmpty(inputEditText.getText())) inputEditText.append("0");
+                inputEditText.append("÷");
             }
         });
 
@@ -184,126 +218,97 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        updateInputScreen();
-        updateOutputScreen();
+        inputEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if (_ignore) return;
+                operand1 = s.toString();
+            }
 
-    }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!TextUtils.isEmpty(s) && isOperator(s.charAt(start))) {
+                    opLocation = start;
+                    hasOperator = true;
+                    _ignore = true;
+                }
 
-    private void updateInputScreen() {
-        inputEditText.setText(display);
+                if (clickedDelete && (TextUtils.isEmpty(s) || isOperator(s.charAt(start)))) {
+                    hasOperator = false;
+                    _ignore = false;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (hasOperator) {
+                    operand2 = s.toString().substring(opLocation + 1);
+
+                    if (!TextUtils.isEmpty(operand1) && !TextUtils.isEmpty(operand2)) {
+                        calculate(operand1, operand2);
+                        updateOutputScreen();
+                        operand1 = formatToString(answer);
+                    }
+                }
+
+            }
+        });
+
     }
 
     private void updateOutputScreen() {
-        outputTextView.setText(prevAnswer);
-    }
-
-    private void onClickKey(char key) {
-        display += key;
-        updateInputScreen();
-
-    }
-
-    private void onClickOperator(short operator) {
-
-        if (TextUtils.isEmpty(display)) {
-            return;
-        }
-
-        char operatorSym = getSym(operator);
-
-        if (!TextUtils.isEmpty(prevAnswer)) {
-            display = prevAnswer;
-
-        } else if (hasOperator) {
-            onClickEqual();
-            hasOperator = false;
-            display = prevAnswer;
-            prevAnswer = "";
-        }
-
-        display += operatorSym;
-        currentOperator = operator;
-        hasOperator = true;
-
-        updateInputScreen();
-
+        outputTextView.setText(doubleToString(answer));
     }
 
     private void onClickDelete() {
-        if (!TextUtils.isEmpty(display)) {
-
-            if (isOperator(display.charAt(display.length() - 1))) {
-                hasOperator = false;
-            }
-
-            display = display.substring(0, display.length() - 1);
-            updateInputScreen();
-        }
-
+        if (TextUtils.isEmpty(inputEditText.getText())) return;
+        inputEditText.setText(inputEditText.getText().subSequence(0, inputEditText.getText().length() - 1));
+        clickedDelete = true;
     }
 
     private void onLongClickDelete() {
         clear();
-        updateInputScreen();
         updateOutputScreen();
+        inputEditText.setText("");
     }
 
-    private double calculate(String a, String b) {
+    private void calculate(String a, String b) {
 
-        switch (currentOperator) {
+        switch (operator) {
             case ADDITION:
-                return Operation.addition(Double.parseDouble(a), Double.parseDouble(b));
+                answer = Operation.addition(Double.parseDouble(a), Double.parseDouble(b));
+                break;
             case SUBTRACTION:
-                return Operation.subtraction(Double.parseDouble(a), Double.parseDouble(b));
+                answer = Operation.subtraction(Double.parseDouble(a), Double.parseDouble(b));
+                break;
             case MULTIPLICATION:
-                return Operation.multiplication(Double.parseDouble(a), Double.parseDouble(b));
+                answer = Operation.multiplication(Double.parseDouble(a), Double.parseDouble(b));
+                break;
             case DIVISION:
-                return Operation.division(Double.parseDouble(a), Double.parseDouble(b));
+                answer = Operation.division(Double.parseDouble(a), Double.parseDouble(b));
+                break;
             default:
-                return -1;
+                answer = 0.0;
         }
     }
 
     private void onClickEqual() {
 
-        if (TextUtils.isEmpty(display)) {
-            return;
-        }
-
-        if (!hasOperator) {
-            prevAnswer = display;
-            return;
-        }
-
-        String[] operands = display.split(Pattern.quote(String.valueOf(getSym(currentOperator))));
-        if (operands.length < 2) {
-            return;
-        }
-
-        prevAnswer = String.valueOf(calculate(operands[0], operands[1]));
-    }
-
-    private char getSym(int operator) {
-        switch (operator) {
-            case ADDITION:
-                return '+';
-            case SUBTRACTION:
-                return '-';
-            case MULTIPLICATION:
-                return '*';
-            case DIVISION:
-                return '/';
-            default:
-                return 0;
-        }
     }
 
     private boolean isOperator(char character) {
         switch (character) {
             case '+':
-            case '-':
-            case '*':
-            case '/':
+                operator = ADDITION;
+                return true;
+            case '−':
+                operator = SUBTRACTION;
+                return true;
+            case '×':
+                operator = MULTIPLICATION;
+                return true;
+            case '÷':
+                operator = DIVISION;
                 return true;
             default:
                 return false;
@@ -311,9 +316,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void clear() {
-        display = "";
-        prevAnswer = "";
-        currentOperator = 0;
+        operand1 = "";
+        operand2 = "";
+        answer = 0.0;
+        operator = 0;
+        hasOperator = false;
+        clickedDelete = false;
+        _ignore = false;
+    }
+
+    private String doubleToString(double d) {
+        return decimalFormat.format(d);
+    }
+
+    private String formatToString(double s) {
+        return Double.toString(s).replace(",", "");
     }
 
 }

@@ -6,13 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <style name="MyButton">
-        <item name="android:width">0dp</item>
-        <item name="android:height">0dp</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">#121212</item>
+        <item name="android:statusBarColor">#121212</item>
     </style>
 
 </resources>
