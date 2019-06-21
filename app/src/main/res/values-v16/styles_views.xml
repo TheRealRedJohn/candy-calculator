@@ -17,7 +17,7 @@
     </style>
 
     <style name="ResultDisplay">
-        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">56sp</item>
         <item name="android:gravity">end|bottom</item>
         <item name="android:maxLines">1</item>
