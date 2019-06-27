@@ -1,0 +1,60 @@
+<resources>
+
+    <!-- Name of the application. [CHAR_LIMIT=NONE] -->
+    <string name="app_name">Calculator</string>
+
+    <!-- Divide operator (e.g. "1 ÷ 2"). [CHAR_LIMIT=1] -->
+    <string name="op_div">÷</string>
+    <!-- Multiply operator (e.g. "1 × 2"). [CHAR_LIMIT=1] -->
+    <string name="op_mul">×</string>
+    <!-- Subtraction operator (e.g. "1 - 2"). [CHAR_LIMIT=1] -->
+    <string name="op_sub">−</string>
+    <!-- Addition operator (e.g. "1 + 2"). [CHAR_LIMIT=1] -->
+    <string name="op_add">+</string>
+    <!-- Percentage operator (e.g. "2 % 100"). [CHAR_LIMIT=1] -->
+    <string name="op_per">%</string>
+    <!-- Power operator (e.g. "1 ^ 2"). [CHAR_LIMIT=1] -->
+    <string name="op_pow">^</string>
+    <!-- Square root operator (e.g. "√1"). [CHAR_LIMIT=1] -->
+    <string name="op_sqrt">√</string>
+
+    <!-- Divide operator (e.g. "1 ÷ 2"). [CHAR_LIMIT=1] -->
+    <string name="alt_op_div">/</string>
+    <!-- Multiply operator (e.g. "1 × 2"). [CHAR_LIMIT=1] -->
+    <string name="alt_op_mul">*</string>
+    <!-- Subtraction operator (e.g. "1 - 2"). [CHAR_LIMIT=1] -->
+    <string name="alt_op_sub">-</string>
+    <!-- Square root operator (e.g. "√1"). [CHAR_LIMIT=1] -->
+    <string name="alt_op_sqrt">sqrt</string>
+
+    <!-- Equals operator (e.g. "1 + 2 = ?"). [CHAR_LIMIT=1] -->
+    <string name="eq">=</string>
+    <!-- Delete operator [CHAR_LIMIT=3] -->
+    <string name="del">DEL</string>
+    <!-- Decimal [CHAR_LIMIT=1] -->
+    <string name="dec">.</string>
+
+    <!-- Number one [CHAR_LIMIT=1] -->
+    <string name="num_one">1</string>
+    <!-- Number two [CHAR_LIMIT=1] -->
+    <string name="num_two">2</string>
+    <!-- Number three [CHAR_LIMIT=1] -->
+    <string name="num_three">3</string>
+    <!-- Number four [CHAR_LIMIT=1] -->
+    <string name="num_four">4</string>
+    <!-- Number five [CHAR_LIMIT=1] -->
+    <string name="num_five">5</string>
+    <!-- Number six [CHAR_LIMIT=1] -->
+    <string name="num_six">6</string>
+    <!-- Number seven [CHAR_LIMIT=1] -->
+    <string name="num_seven">7</string>
+    <!-- Number eight [CHAR_LIMIT=1] -->
+    <string name="num_eight">8</string>
+    <!-- Number nine [CHAR_LIMIT=1] -->
+    <string name="num_nine">9</string>
+    <!-- Number zero [CHAR_LIMIT=1] -->
+    <string name="num_zero">0</string>
+
+    <string name="error">Error</string>
+
+</resources>

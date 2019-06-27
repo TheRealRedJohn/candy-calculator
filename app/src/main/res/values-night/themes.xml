@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Dark Theme. -->
+    <style name="BaseTheme" parent="Theme.MaterialComponents.NoActionBar.Bridge">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/darkColorPrimary</item>
+        <item name="colorPrimary">@color/darkColorPrimary</item>
+        <item name="colorPrimaryDark">@color/darkColorPrimary</item>
+        <item name="colorAccent">@color/darkColorAccent</item>
+        <item name="android:textColor">@color/darkColorText</item>
+        <item name="android:buttonStyle">@style/ButtonTheme</item>
+        <item name="android:imageButtonStyle">@style/ImageButtonTheme</item>
+        <item name="buttonStyle">@style/ButtonTheme</item>
+        <item name="imageButtonStyle">@style/ImageButtonTheme</item>
+    </style>
+
+    <style name="PreferenceTheme" parent="BaseTheme">
+        <item name="android:windowBackground">@color/darkColorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/darkColorPrimaryDark</item>
+    </style>
+
+    <style name="ButtonTheme" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/darkColorText</item>
+    </style>
+
+    <style name="ImageButtonTheme" parent="Widget.AppCompat.ImageButton">
+        <item name="android:tint">@color/darkColorText</item>
+    </style>
+
+    <!-- Purple Theme. -->
+    <style name="BaseTheme.Purple">
+        <item name="android:windowBackground">@color/purpleColorPrimary</item>
+        <item name="colorPrimary">@color/purpleColorPrimary</item>
+        <item name="colorPrimaryDark">@color/purpleColorPrimary</item>
+        <item name="colorAccent">@color/purpleColorAccent</item>
+    </style>
+
+    <style name="PreferenceTheme.Purple">
+        <item name="android:windowBackground">@color/purpleColorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/purpleColorPrimaryDark</item>
+        <item name="colorAccent">@color/purpleColorAccent</item>
+    </style>
+
+    <!-- Dark Cyan Theme -->
+    <style name="BaseTheme.DarkCyan">
+        <item name="android:windowBackground">@color/darkCyanColorPrimary</item>
+        <item name="colorPrimary">@color/darkCyanColorPrimary</item>
+        <item name="colorPrimaryDark">@color/darkCyanColorPrimary</item>
+        <item name="colorAccent">@color/darkCyanColorAccent</item>
+    </style>
+
+    <style name="PreferenceTheme.DarkCyan">
+        <item name="android:windowBackground">@color/darkCyanColorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/darkCyanColorPrimaryDark</item>
+        <item name="colorAccent">@color/darkCyanColorAccent</item>
+    </style>
+
+</resources>
