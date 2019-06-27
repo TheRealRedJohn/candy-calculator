@@ -31,12 +31,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 getResources().getColor(R.color.pinkColorPrimary),
                 getResources().getColor(R.color.blueColorPrimary)};
 
-        final String[] descriptions = {"A", "B", "C", "D", "E", "F", "G", "H"};
-
-
         ColorPickerPreference colorPickerPreference = findPreference("color_picker");
         colorPickerPreference.setColors(colors);
-        colorPickerPreference.setColorDescriptions(descriptions);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
