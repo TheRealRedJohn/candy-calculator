@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Light Theme. Default application theme. -->
     <style name="BaseTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
@@ -13,13 +13,17 @@
         <item name="android:imageButtonStyle">@style/ImageButtonTheme</item>
         <item name="buttonStyle">@style/ButtonTheme</item>
         <item name="imageButtonStyle">@style/ImageButtonTheme</item>
-        <!--<item name="android:windowLightNavigationBar">true</item>-->
-        <!--<item name="android:windowLightStatusBar">true</item>-->
+
+        <item name="android:navigationBarColor" tools:targetApi="21">@color/darkColorPrimaryDark
+        </item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
     </style>
 
     <style name="PreferenceTheme" parent="BaseTheme">
         <item name="android:windowBackground">@color/colorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:navigationBarColor" tools:targetApi="21">?colorPrimaryDark</item>
     </style>
 
     <style name="ButtonTheme" parent="Widget.AppCompat.Button">
@@ -36,6 +40,9 @@
         <item name="colorPrimary">@color/tealColorPrimary</item>
         <item name="colorPrimaryDark">@color/tealColorPrimaryDark</item>
         <item name="colorAccent">@color/tealColorAccent</item>
+
+        <item name="android:navigationBarColor" tools:targetApi="21">@color/tealColorPrimaryDark
+        </item>
     </style>
 
     <style name="PreferenceTheme.Teal">
@@ -64,6 +71,9 @@
         <item name="colorPrimary">@color/pinkColorPrimary</item>
         <item name="colorPrimaryDark">@color/pinkColorPrimaryDark</item>
         <item name="colorAccent">@color/pinkColorAccent</item>
+
+        <item name="android:navigationBarColor" tools:targetApi="21">@color/pinkColorPrimaryDark
+        </item>
     </style>
 
     <style name="PreferenceTheme.Pink">
@@ -78,6 +88,9 @@
         <item name="colorPrimary">@color/blueColorPrimary</item>
         <item name="colorPrimaryDark">@color/blueColorPrimary</item>
         <item name="colorAccent">@color/blueColorAccent</item>
+
+        <item name="android:navigationBarColor" tools:targetApi="21">@color/blueColorPrimaryDark
+        </item>
     </style>
 
     <style name="PreferenceTheme.Blue">

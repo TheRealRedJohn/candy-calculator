@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Dark Theme. -->
     <style name="BaseTheme" parent="Theme.MaterialComponents.NoActionBar.Bridge">
@@ -13,11 +13,16 @@
         <item name="android:imageButtonStyle">@style/ImageButtonTheme</item>
         <item name="buttonStyle">@style/ButtonTheme</item>
         <item name="imageButtonStyle">@style/ImageButtonTheme</item>
+
+        <item name="android:navigationBarColor" tools:targetApi="21">@color/colorPrimaryDark</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
     </style>
 
     <style name="PreferenceTheme" parent="BaseTheme">
         <item name="android:windowBackground">@color/darkColorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/darkColorPrimaryDark</item>
+        <item name="android:navigationBarColor" tools:targetApi="21" >?colorPrimaryDark</item>
     </style>
 
     <style name="ButtonTheme" parent="Widget.AppCompat.Button">
@@ -34,6 +39,9 @@
         <item name="colorPrimary">@color/purpleColorPrimary</item>
         <item name="colorPrimaryDark">@color/purpleColorPrimary</item>
         <item name="colorAccent">@color/purpleColorAccent</item>
+
+        <item name="android:navigationBarColor" tools:targetApi="21">@color/purpleColorPrimaryDark
+        </item>
     </style>
 
     <style name="PreferenceTheme.Purple">
@@ -48,6 +56,10 @@
         <item name="colorPrimary">@color/darkCyanColorPrimary</item>
         <item name="colorPrimaryDark">@color/darkCyanColorPrimary</item>
         <item name="colorAccent">@color/darkCyanColorAccent</item>
+
+        <item name="android:navigationBarColor" tools:targetApi="21">
+            @color/darkCyanColorPrimaryDark
+        </item>
     </style>
 
     <style name="PreferenceTheme.DarkCyan">

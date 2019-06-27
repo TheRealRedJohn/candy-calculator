@@ -11,6 +11,7 @@
         <activity
             android:name=".CalculatorActivity"
             android:configChanges="orientation|screenSize"
+            android:screenOrientation="nosensor"
             android:theme="@style/BaseTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +24,7 @@
             android:name=".CalculatorSettings"
             android:configChanges="orientation|screenSize"
             android:parentActivityName=".CalculatorActivity"
+            android:screenOrientation="nosensor"
             android:theme="@style/PreferenceTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
