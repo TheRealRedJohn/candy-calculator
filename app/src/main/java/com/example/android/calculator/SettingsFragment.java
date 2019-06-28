@@ -32,20 +32,24 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 getResources().getColor(R.color.blueColorPrimary)};
 
         ColorPickerPreference colorPickerPreference = findPreference("color_picker");
+        if (colorPickerPreference == null) return;
         colorPickerPreference.setColors(colors);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if (getContext() != null) {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+            SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        colorPickerPreference.setOnPreferenceChangeListener((Preference preference, Object newValue) -> {
-            String theme = ThemeUtils.identifyTheme(Integer.parseInt(newValue.toString()));
+            colorPickerPreference.setOnPreferenceChangeListener((Preference preference, Object newValue) -> {
+                String theme = ThemeUtils.identifyTheme(Integer.parseInt(newValue.toString()));
 
-            editor.putString("current_theme", theme);
-            editor.apply();
+                editor.putString("current_theme", theme);
+                editor.apply();
 
-            getActivity().recreate();
-            return true;
-        });
+                if (getActivity() != null) getActivity().recreate();
+                return true;
+            });
+        }
+
     }
 
 }

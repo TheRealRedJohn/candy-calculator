@@ -4,7 +4,7 @@ import android.text.TextUtils;
 
 import org.mariuszgromada.math.mxparser.Expression;
 
-public class ExpressionCalculation {
+class ExpressionCalculation {
 
     private Expression ep;
     private CalculationOutput calculationOutput;
@@ -14,7 +14,7 @@ public class ExpressionCalculation {
     private boolean hasError = false;
     private boolean clickedEvaluate = false;
 
-    public ExpressionCalculation() {
+    ExpressionCalculation() {
         this.ep = new Expression();
     }
 

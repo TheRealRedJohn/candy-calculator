@@ -6,7 +6,7 @@ public class CalculatorPresenter implements CalculatorContract.KeyPadToPresenter
     private CalculatorContract.UpdateDisplayViews displayViews;
     private ExpressionCalculation calculation;
 
-    public CalculatorPresenter(CalculatorContract.UpdateDisplayViews displayViews) {
+    CalculatorPresenter(CalculatorContract.UpdateDisplayViews displayViews) {
         this.displayViews = displayViews;
         calculation = new ExpressionCalculation();
         calculation.setCalculationOutputListener(this);
