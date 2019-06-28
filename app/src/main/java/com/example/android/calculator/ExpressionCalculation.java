@@ -116,7 +116,7 @@ public class ExpressionCalculation {
             double result = ep.calculate();
 
             if (Double.isNaN(result)) {
-                calculationOutput.onResultChanged("NaN", false);
+                calculationOutput.onResultChanged(currentResult = "Error", false);
                 hasError = true;
             } else {
                 currentExpression = ExpressionFormatter.addFormatNoDecimal(result);
@@ -147,7 +147,7 @@ public class ExpressionCalculation {
      */
     private boolean validateResetDisplay() {
         // do not allow when expression is empty
-        return !TextUtils.isEmpty(currentExpression);
+        return !(TextUtils.isEmpty(currentExpression) && TextUtils.isEmpty(currentResult));
     }
 
     /**
@@ -177,7 +177,6 @@ public class ExpressionCalculation {
         }
 
         char charOp = operator.charAt(0);
-
         // don't allow multiple successive operators
         switch (charOp) {
             case '÷':
@@ -191,13 +190,23 @@ public class ExpressionCalculation {
                 // don't allow /* or -+ or ++ or */ etc.
                 if (isOperator(currentExpression.charAt(currentExpression.length() - 1))) {
                     deleteCharacter();
+                    return true;
+                }
+
+                if (currentExpression.charAt(currentExpression.length() - 1) == '^') {
+                    return false;
                 }
 
             case '−':
                 // do not allow -- or +-
                 if (!TextUtils.isEmpty(currentExpression) && isAddOrSubtractOperator(currentExpression.charAt(currentExpression.length() - 1))) {
                     deleteCharacter();
+                    return true;
                 }
+        }
+
+        if (currentExpression.charAt(currentExpression.length() - 1) == '.') {
+            appendNumber("0");
         }
 
         return true;
@@ -215,6 +224,13 @@ public class ExpressionCalculation {
 
         // do not allow two decimals in the same number
         int index = currentExpression.lastIndexOf('.');
+
+        // do not allow 6..
+        if (index == currentExpression.length() - 1) {
+            return false;
+        }
+
+        // do not allow 6..
         return !(index != -1 && TextUtils.isDigitsOnly
                 (currentExpression.substring(index + 1, currentExpression.length() - 1)));
     }
@@ -239,6 +255,12 @@ public class ExpressionCalculation {
         // do not allow *% or ^% etc.
         if (isOperatorOrFunction(currentExpression.charAt(currentExpression.length() - 1))) {
             deleteCharacter();
+            return true;
+        }
+
+        // do not allow .%
+        if (currentExpression.charAt(currentExpression.length() - 1) == '.') {
+            appendNumber("0");
         }
 
         return true;
@@ -261,9 +283,20 @@ public class ExpressionCalculation {
             return false;
         }
 
-        // do not allow /^ or *^ or -^ or +^
-        if (isOperatorOrFunction(currentExpression.charAt(currentExpression.length() - 1))) {
+        // do not allow /^ or *^ or -^ or +^ etc.
+        if (isOperatorOrFunctionNotPercent(currentExpression.charAt(currentExpression.length() - 1))) {
             deleteCharacter();
+            return true;
+        }
+
+        // do not allow √^
+        if (currentExpression.charAt(currentExpression.length() - 1) == '√') {
+            return false;
+        }
+
+        // do not allow .^
+        if (currentExpression.charAt(currentExpression.length() - 1) == '.') {
+            appendNumber("0");
         }
 
         return true;
@@ -281,8 +314,16 @@ public class ExpressionCalculation {
             clickedEvaluate = false;
         }
 
-        if (!TextUtils.isEmpty(currentExpression) && isNumberOrPercent(currentExpression.charAt(currentExpression.length() - 1))) {
+        // do not allow 3√5 (instead 3×√5)
+        if (!TextUtils.isEmpty(currentExpression) &&
+                isNumberOrPercent(currentExpression.charAt(currentExpression.length() - 1))) {
             appendOperator("×");
+        }
+
+        // do not allow .√
+        if (!TextUtils.isEmpty(currentExpression) &&
+                currentExpression.charAt(currentExpression.length() - 1) == '.') {
+            appendNumber("0");
         }
 
         return true;
@@ -306,6 +347,7 @@ public class ExpressionCalculation {
 
         if (isOperatorOrFunctionNotPercent(currentExpression.charAt(currentExpression.length() - 1))) {
             deleteCharacter();
+            return true;
         }
 
         return true;

@@ -28,7 +28,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 getResources().getColor(R.color.tealColorPrimary),
                 getResources().getColor(R.color.darkCyanColorPrimary),
                 getResources().getColor(R.color.amberColorPrimary),
-                getResources().getColor(R.color.pinkColorPrimary),
+                getResources().getColor(R.color.darkPinkColorPrimary),
                 getResources().getColor(R.color.blueColorPrimary)};
 
         ColorPickerPreference colorPickerPreference = findPreference("color_picker");

@@ -1,8 +1,11 @@
 package com.example.android.calculator;
 
+import android.util.Log;
+
 public class ThemeUtils {
 
     public static String identifyTheme(int theme) {
+        Log.e("NEW THEME", theme + "");
 
         switch (theme) {
             case -14606047:
@@ -20,9 +23,9 @@ public class ThemeUtils {
             case -6785:
                 // amber
                 return "amber";
-            case -476208:
-                // pink
-                return "pink";
+            case -3862174:
+                // dark pink
+                return "darkPink";
             case -14972955:
                 // blue
                 return "blue";

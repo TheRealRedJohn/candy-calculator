@@ -42,16 +42,16 @@ public class CalculatorSettings extends BaseActivity {
 
             // teal
         } else if (TextUtils.equals(currentTheme, "teal")) {
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             setTheme(R.style.PreferenceTheme_Teal);
 
             // amber
         } else if (TextUtils.equals(currentTheme, "amber")) {
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             setTheme(R.style.PreferenceTheme_Amber);
 
-            // pink
-        } else if (TextUtils.equals(currentTheme, "pink")) {
+            // dark pink
+        } else if (TextUtils.equals(currentTheme, "darkPink")) {
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             setTheme(R.style.PreferenceTheme_Pink);
 

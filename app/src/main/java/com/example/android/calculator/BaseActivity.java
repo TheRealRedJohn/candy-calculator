@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     private String currentTheme;
     private SharedPreferences sharedPreferences;
@@ -65,24 +65,24 @@ public class BaseActivity extends AppCompatActivity {
 
             // teal
         } else if (TextUtils.equals(currentTheme, "teal")) {
-            isDark = true;
+            isDark = false;
             errorColor = R.color.tealColorAccent;
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             setTheme(R.style.BaseTheme_Teal);
 
             // amber
         } else if (TextUtils.equals(currentTheme, "amber")) {
-            isDark = true;
+            isDark = false;
             errorColor = R.color.amberColorAccent;
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             setTheme(R.style.BaseTheme_Amber);
 
-            // pink
-        } else if (TextUtils.equals(currentTheme, "pink")) {
+            // dark pink
+        } else if (TextUtils.equals(currentTheme, "darkPink")) {
             isDark = true;
-            errorColor = R.color.pinkColorAccent;
+            errorColor = R.color.darkPinkColorAccent;
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            setTheme(R.style.BaseTheme_Pink);
+            setTheme(R.style.BaseTheme_DarkPink);
 
             // blue
         } else if (TextUtils.equals(currentTheme, "blue")) {

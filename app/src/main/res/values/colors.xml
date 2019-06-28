@@ -22,7 +22,7 @@
     <!-- 4. Teal Theme -->
     <color name="tealColorPrimary">#03DAC6</color>
     <color name="tealColorPrimaryDark">#018786</color>
-    <color name="tealColorAccent">#6200EE</color>
+    <color name="tealColorAccent">#0d47a1</color>
     <color name="tealColorText">#000000</color>
 
     <!-- 5. Dark Cyan Theme -->
@@ -37,11 +37,11 @@
     <color name="amberColorAccent">#006064</color>
     <color name="amberColorText">#000000</color>
 
-    <!-- 7. Pink Theme -->
-    <color name="pinkColorPrimary">#f8bbd0</color>
-    <color name="pinkColorPrimaryDark">#c48b9f</color>
-    <color name="pinkColorAccent">#1b87e5</color>
-    <color name="pinkColorText">#000000</color>
+    <!-- 7. Dark Pink Theme -->
+    <color name="darkPinkColorPrimary">#c51162</color>
+    <color name="darkPinkColorPrimaryDark">#8e0038</color>
+    <color name="darkPinkColorAccent">#ffff00</color>
+    <color name="darkPinkColorText">#ffffff</color>
     
     <!-- 8. Blue Theme -->
     <color name="blueColorPrimary">#1b87e5</color>

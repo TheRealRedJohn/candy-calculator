@@ -14,7 +14,8 @@
         <item name="buttonStyle">@style/ButtonTheme</item>
         <item name="imageButtonStyle">@style/ImageButtonTheme</item>
 
-        <item name="android:navigationBarColor" tools:targetApi="21">@color/colorPrimaryDark</item>
+        <item name="android:navigationBarColor" tools:targetApi="21">@color/darkColorPrimaryDark
+        </item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
     </style>
@@ -22,7 +23,7 @@
     <style name="PreferenceTheme" parent="BaseTheme">
         <item name="android:windowBackground">@color/darkColorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/darkColorPrimaryDark</item>
-        <item name="android:navigationBarColor" tools:targetApi="21" >?colorPrimaryDark</item>
+        <item name="android:navigationBarColor" tools:targetApi="21">?colorPrimaryDark</item>
     </style>
 
     <style name="ButtonTheme" parent="Widget.AppCompat.Button">
@@ -31,6 +32,11 @@
 
     <style name="ImageButtonTheme" parent="Widget.AppCompat.ImageButton">
         <item name="android:tint">@color/darkColorText</item>
+    </style>
+
+    <style name="ThemeOverlay.Material.Dialog.ColorPicker" parent="@style/ThemeOverlay.AppCompat.Dialog">
+        <item name="android:background">?colorPrimaryDark</item>
+        <item name="alertDialogStyle">@style/AlertDialog.AppCompat</item>
     </style>
 
     <!-- Purple Theme. -->
@@ -57,8 +63,7 @@
         <item name="colorPrimaryDark">@color/darkCyanColorPrimary</item>
         <item name="colorAccent">@color/darkCyanColorAccent</item>
 
-        <item name="android:navigationBarColor" tools:targetApi="21">
-            @color/darkCyanColorPrimaryDark
+        <item name="android:navigationBarColor" tools:targetApi="21">@color/darkCyanColorPrimaryDark
         </item>
     </style>
 
@@ -66,6 +71,39 @@
         <item name="android:windowBackground">@color/darkCyanColorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/darkCyanColorPrimaryDark</item>
         <item name="colorAccent">@color/darkCyanColorAccent</item>
+    </style>
+
+    <!-- Dark Pink Theme -->
+    <style name="BaseTheme.DarkPink">
+        <item name="android:windowBackground">@color/darkPinkColorPrimary</item>
+        <item name="colorPrimary">@color/darkPinkColorPrimary</item>
+        <item name="colorPrimaryDark">@color/darkPinkColorPrimary</item>
+        <item name="colorAccent">@color/darkPinkColorAccent</item>
+
+        <item name="android:navigationBarColor" tools:targetApi="21">@color/darkPinkColorPrimaryDark</item>
+    </style>
+
+    <style name="PreferenceTheme.Pink">
+        <item name="android:windowBackground">@color/darkPinkColorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/darkPinkColorPrimaryDark</item>
+        <item name="colorAccent">@color/darkPinkColorAccent</item>
+    </style>
+
+    <!-- Blue Theme -->
+    <style name="BaseTheme.Blue">
+        <item name="android:windowBackground">@color/blueColorPrimary</item>
+        <item name="colorPrimary">@color/blueColorPrimary</item>
+        <item name="colorPrimaryDark">@color/blueColorPrimary</item>
+        <item name="colorAccent">@color/blueColorAccent</item>
+
+        <item name="android:navigationBarColor" tools:targetApi="21">@color/blueColorPrimaryDark
+        </item>
+    </style>
+
+    <style name="PreferenceTheme.Blue">
+        <item name="android:windowBackground">@color/blueColorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/blueColorPrimaryDark</item>
+        <item name="colorAccent">@color/blueColorAccent</item>
     </style>
 
 </resources>
