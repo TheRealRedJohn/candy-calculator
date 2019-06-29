@@ -22,7 +22,7 @@
     <!-- 4. Teal Theme -->
     <color name="tealColorPrimary">#03DAC6</color>
     <color name="tealColorPrimaryDark">#018786</color>
-    <color name="tealColorAccent">#6200EE</color>
+    <color name="tealColorAccent">#3700B3</color>
     <color name="tealColorText">#000000</color>
 
     <!-- 5. Dark Cyan Theme -->

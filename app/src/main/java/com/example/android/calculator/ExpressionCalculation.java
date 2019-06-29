@@ -199,7 +199,11 @@ class ExpressionCalculation {
 
             case '−':
                 // do not allow -- or +-
-                if (!TextUtils.isEmpty(currentExpression) && isAddOrSubtractOperator(currentExpression.charAt(currentExpression.length() - 1))) {
+                if (TextUtils.isEmpty(currentExpression)) {
+                    return true;
+                }
+
+                if (isAddOrSubtractOperator(currentExpression.charAt(currentExpression.length() - 1))) {
                     deleteCharacter();
                     return true;
                 }
