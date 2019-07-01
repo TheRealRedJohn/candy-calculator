@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ExpressionDisplay">
+        <item name="android:autoSizeMaxTextSize">38sp</item>
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:gravity">end|bottom</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="ResultDisplay">
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:gravity">end|bottom</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+</resources>
