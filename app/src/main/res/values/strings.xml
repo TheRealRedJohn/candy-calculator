@@ -55,4 +55,20 @@
     <!-- Number zero [CHAR_LIMIT=1] -->
     <string name="num_zero">0</string>
 
+    <!-- Third party information [CHAR_LIMIT=NONE] -->
+    <!--<string name="third_party_information">Third party information</string>-->
+    <!-- Github URL -->
+    <string name="github_url">https://github.com/TheRealRedJohn/candy-calculator</string>
+    <!-- Play Store URL -->
+    <string name="play_store_url">https://play.google.com/store/apps/details?id=com.techaura.candycalculator</string>
+    <!-- Version number [CHAR_LIMIT=5] -->
+    <string name="version_number">1.0</string>
+
+    <!-- Developer summary [CHAR_LIMIT=NONE] -->
+    <!--<string name="about_summary">Enter information about the developer</string>-->
+    <!-- Privacy URL -->
+    <string name="privacy_url">https://www.dropbox.com/scl/fi/n1erpyyii06tcyvr3cbgh/Privacy%20Policy.gdoc?dl=0&amp;rlkey=qieyvws9bidw9bvd609dyt4lm</string>
+    <!-- Feedback summary [CHAR_LIMIT=NONE] -->
+    <string name="feedback_summary">hello.techaura@gmail.com</string>
+
 </resources>
