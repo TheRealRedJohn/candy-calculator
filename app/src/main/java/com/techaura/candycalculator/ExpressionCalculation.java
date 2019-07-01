@@ -4,7 +4,10 @@ import android.text.TextUtils;
 
 import org.mariuszgromada.math.mxparser.Expression;
 
-class ExpressionCalculation {
+/**
+ * Performs calculations
+ */
+public class ExpressionCalculation {
 
     private Expression ep;
     private CalculationOutput calculationOutput;
@@ -14,7 +17,7 @@ class ExpressionCalculation {
     private boolean hasError = false;
     private boolean clickedEvaluate = false;
 
-    ExpressionCalculation() {
+    public ExpressionCalculation() {
         this.ep = new Expression();
     }
 
@@ -31,98 +34,161 @@ class ExpressionCalculation {
     }
 
     /**
-     * Delete a single character from currentExpression unless empty.
+     * Deletes a single character from currentExpression
      */
     public void deleteCharacter() {
-        if (validateDelete()) {
-            currentExpression = currentExpression.substring(0, currentExpression.length() - 1);
-            calculationOutput.onExpressionChanged(currentExpression);
+        try {
+
+            if (validateDelete()) {
+                currentExpression = currentExpression.substring(0, currentExpression.length() - 1);
+                calculationOutput.onExpressionChanged(currentExpression);
+            }
+
+        } catch (Exception e) {
+            calculationOutput.onResultChanged("Problem with calculation", false);
         }
     }
 
     /**
-     * Delete entire expression unless empty.
+     * Deletes the entire expression and clears result
      */
     public void resetDisplay() {
-        if (validateResetDisplay()) {
-            currentExpression = "";
-            currentResult = "";
-            calculationOutput.onExpressionChanged(currentExpression);
-            calculationOutput.onResultChanged(currentResult, true);
-            hasError = clickedEvaluate = false;
+        try {
+
+            if (validateResetDisplay()) {
+                currentExpression = "";
+                currentResult = "";
+                calculationOutput.onExpressionChanged(currentExpression);
+                calculationOutput.onResultChanged(currentResult, true);
+                hasError = clickedEvaluate = false;
+            }
+
+        } catch (Exception e) {
+            calculationOutput.onResultChanged("Problem with calculation", false);
         }
     }
 
     /**
-     * Append number to currentExpression if valid.
+     * Append number to currentExpression if valid
      *
      * @param number - number to be appended
      */
     public void appendNumber(String number) {
-        validateAppendNumber();
-        currentExpression += number;
-        calculationOutput.onExpressionChanged(currentExpression);
+        try {
+
+            validateAppendNumber();
+            currentExpression += number;
+            calculationOutput.onExpressionChanged(currentExpression);
+
+        } catch (Exception e) {
+            calculationOutput.onResultChanged("Problem with calculation", false);
+        }
     }
 
     /**
-     * Append operator to currentExpression if valid.
+     * Append operator to currentExpression if valid
      *
-     * @param operator
+     * @param operator - operator to be appended
      */
     public void appendOperator(String operator) {
-        if (validateAppendOperator(operator)) {
-            currentExpression += operator;
-            calculationOutput.onExpressionChanged(currentExpression);
+        try {
+
+            if (validateAppendOperator(operator)) {
+                currentExpression += operator;
+                calculationOutput.onExpressionChanged(currentExpression);
+            }
+
+        } catch (Exception e) {
+            calculationOutput.onResultChanged("Problem with calculation", false);
         }
     }
 
     /**
-     * See type comment for appendOperator
+     * Append decimal if valid
      */
     public void appendDecimal() {
-        if (validateAppendDecimal()) {
-            currentExpression += ".";
-            calculationOutput.onExpressionChanged(currentExpression);
-        }
-    }
+        try {
 
-    public void appendPercent() {
-        if (validateAppendPercent()) {
-            currentExpression += "%";
-            calculationOutput.onExpressionChanged(currentExpression);
-        }
-    }
+            if (validateAppendDecimal()) {
+                currentExpression += ".";
+                calculationOutput.onExpressionChanged(currentExpression);
+            }
 
-    public void appendPower() {
-        if (validateAppendPower()) {
-            currentExpression += "^";
-            calculationOutput.onExpressionChanged(currentExpression);
-        }
-    }
-
-    public void appendRoot() {
-        if (validateAppendRoot()) {
-            currentExpression += "√";
-            calculationOutput.onExpressionChanged(currentExpression);
+        } catch (Exception e) {
+            calculationOutput.onResultChanged("Problem with calculation", false);
         }
     }
 
     /**
-     * If currentExpression passes all checks, pass it to Symbols object. Return the result.
+     * Append percent if valid
+     */
+    public void appendPercent() {
+        try {
+
+            if (validateAppendPercent()) {
+                currentExpression += "%";
+                calculationOutput.onExpressionChanged(currentExpression);
+            }
+
+        } catch (Exception e) {
+            calculationOutput.onResultChanged("Problem with calculation", false);
+        }
+    }
+
+    /**
+     * Append power if valid
+     */
+    public void appendPower() {
+        try {
+
+            if (validateAppendPower()) {
+                currentExpression += "^";
+                calculationOutput.onExpressionChanged(currentExpression);
+            }
+
+        } catch (Exception e) {
+            calculationOutput.onResultChanged("Problem with calculation", false);
+        }
+    }
+
+    /**
+     * Append root if valid
+     */
+    public void appendRoot() {
+        try {
+
+            if (validateAppendRoot()) {
+                currentExpression += "√";
+                calculationOutput.onExpressionChanged(currentExpression);
+            }
+
+        } catch (Exception e) {
+            calculationOutput.onResultChanged("Problem with calculation", false);
+        }
+    }
+
+    /**
+     * Evaluate currentExpression if valid
      */
     public void evaluate() {
-        if (validateEvaluate()) {
-            ep.setExpressionString(ExpressionFormatter.getTokenizedExpression(currentExpression));
-            double result = ep.calculate();
+        try {
 
-            if (Double.isNaN(result)) {
-                calculationOutput.onResultChanged(currentResult = "Error", false);
-                hasError = true;
-            } else {
-                currentExpression = ExpressionFormatter.addFormatNoDecimal(result);
-                calculationOutput.onResultChanged(ExpressionFormatter.addFormat(result), true);
-                clickedEvaluate = true;
+            if (validateEvaluate()) {
+                ep.setExpressionString(ExpressionFormatter.getTokenizedExpression(currentExpression));
+                double result = ep.calculate();
+
+                if (Double.isNaN(result)) {
+                    calculationOutput.onResultChanged(currentResult = "Error", false);
+                    hasError = true;
+                } else {
+                    currentExpression = ExpressionFormatter.addFormatNoDecimal(result);
+                    calculationOutput.onResultChanged(ExpressionFormatter.addFormat(result), true);
+                    clickedEvaluate = true;
+                }
             }
+
+        } catch (Exception e) {
+            calculationOutput.onResultChanged("Problem with calculation", false);
         }
 
     }
@@ -226,10 +292,15 @@ class ExpressionCalculation {
             resetDisplay();
         }
 
+        if (TextUtils.isEmpty(currentExpression)) {
+            appendNumber("0");
+            return true;
+        }
+
         // do not allow two decimals in the same number
         int index = currentExpression.lastIndexOf('.');
 
-        // do not allow 6..
+        // do not allow ..
         if (index == currentExpression.length() - 1) {
             return false;
         }
@@ -349,6 +420,7 @@ class ExpressionCalculation {
             return false;
         }
 
+        // do not equate 123^. Instead do 123
         if (isOperatorOrFunctionNotPercent(currentExpression.charAt(currentExpression.length() - 1))) {
             deleteCharacter();
             return true;
@@ -380,7 +452,7 @@ class ExpressionCalculation {
      * Helper method to validateAppendOperator()
      *
      * @param character - character to be checked
-     * @return true if + or - found, false otherwise
+     * @return true if + or - is found, false otherwise
      */
     private boolean isAddOrSubtractOperator(char character) {
         switch (character) {
@@ -392,6 +464,12 @@ class ExpressionCalculation {
         return false;
     }
 
+    /**
+     * Helper method to validateAppendPercent()
+     *
+     * @param character - character to be checked
+     * @return true if character found, false otherwise
+     */
     private boolean isOperatorOrFunction(char character) {
         switch (character) {
             case '÷':
@@ -407,6 +485,12 @@ class ExpressionCalculation {
         return false;
     }
 
+    /**
+     * Helper method to validateAppendPower() and validateEvaluate()
+     *
+     * @param character - character to be checked
+     * @return true if character found, false otherwise
+     */
     private boolean isOperatorOrFunctionNotPercent(char character) {
         switch (character) {
             case '÷':

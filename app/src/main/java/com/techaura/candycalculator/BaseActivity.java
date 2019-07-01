@@ -38,6 +38,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Updates theme
+     *
+     * @param currentTheme - current theme of the app
+     */
     public void setAppTheme(String currentTheme) {
 
         // Light Theme (Default)

@@ -11,6 +11,9 @@ import androidx.preference.PreferenceManager;
 import com.takisoft.preferencex.ColorPickerPreference;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
 
+/**
+ * Fragment for SettingsActivity
+ */
 public class SettingsFragment extends PreferenceFragmentCompat {
 
     public SettingsFragment() {

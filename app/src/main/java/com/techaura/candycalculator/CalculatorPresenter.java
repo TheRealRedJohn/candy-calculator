@@ -1,12 +1,16 @@
 package com.techaura.candycalculator;
 
+/**
+ * Relays values from the UI to actual calculation
+ */
 public class CalculatorPresenter implements CalculatorContract.KeyPadToPresenter,
         ExpressionCalculation.CalculationOutput {
 
     private CalculatorContract.UpdateDisplayViews displayViews;
     private ExpressionCalculation calculation;
 
-    CalculatorPresenter(CalculatorContract.UpdateDisplayViews displayViews) {
+
+    public CalculatorPresenter(CalculatorContract.UpdateDisplayViews displayViews) {
         this.displayViews = displayViews;
         calculation = new ExpressionCalculation();
         calculation.setCalculationOutputListener(this);
@@ -67,7 +71,7 @@ public class CalculatorPresenter implements CalculatorContract.KeyPadToPresenter
         if (successful) {
             displayViews.showResult(output);
         } else {
-            displayViews.showError();
+            displayViews.showError(output);
         }
     }
 }

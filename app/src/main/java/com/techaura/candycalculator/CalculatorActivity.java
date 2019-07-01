@@ -17,6 +17,8 @@ import butterknife.OnLongClick;
 public class CalculatorActivity extends BaseActivity
         implements CalculatorContract.UpdateDisplayViews {
 
+    private CalculatorContract.KeyPadToPresenter presenter; // relays values to calculate
+
     // Expression
     @BindView(R.id.display_expression)
     TextView displayExpression;
@@ -24,11 +26,6 @@ public class CalculatorActivity extends BaseActivity
     // Result
     @BindView(R.id.display_result)
     TextView displayResult;
-
-    // Relays values to calculate
-    private CalculatorContract.KeyPadToPresenter presenter;
-
-    // Display views
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +38,9 @@ public class CalculatorActivity extends BaseActivity
         presenter = new CalculatorPresenter(this);
     }
 
-    // Settings intent
+    /**
+     * Settings intent
+     */
     @OnClick(R.id.btn_settings)
     public void onSettingsClick() {
         Intent settingsIntent = new Intent(this, CalculatorSettings.class);
@@ -50,16 +49,27 @@ public class CalculatorActivity extends BaseActivity
 
     // Click events of buttons
 
+    /**
+     * Delete button short click event
+     */
     @OnClick(R.id.btn_delete)
     public void onDeleteShortClick() {
         presenter.onDeleteShortClick();
     }
 
+    /**
+     * Delete button long click event
+     */
     @OnLongClick(R.id.btn_delete)
     public void onDeleteLongClick() {
         presenter.onDeleteLongClick();
     }
 
+    /**
+     * Number click event
+     *
+     * @param button - number clicked
+     */
     @OnClick({R.id.btn_number_one, R.id.btn_number_two, R.id.btn_number_three, R.id.btn_number_four,
             R.id.btn_number_five, R.id.btn_number_six, R.id.btn_number_seven, R.id.btn_number_eight,
             R.id.btn_number_nine, R.id.btn_number_zero})
@@ -67,31 +77,51 @@ public class CalculatorActivity extends BaseActivity
         presenter.onNumberClick(button.getText().toString());
     }
 
+    /**
+     * Operator click event
+     *
+     * @param operator - operator clicked
+     */
     @OnClick({R.id.btn_operator_divide, R.id.btn_operator_multiply, R.id.btn_operator_subtract, R.id.btn_operator_add})
     public void onOperatorClick(Button operator) {
         presenter.onOperatorClick(operator.getText().toString());
     }
 
+    /**
+     * Decimal click event
+     */
     @OnClick(R.id.btn_decimal)
     public void onDecimalClick() {
         presenter.onDecimalClick();
     }
 
+    /**
+     * Percent click event
+     */
     @OnClick(R.id.btn_percent)
     public void onPercentClick() {
         presenter.onPercentClick();
     }
 
+    /**
+     * Power click event
+     */
     @OnClick(R.id.btn_power)
     public void onPowerClick() {
         presenter.onPowerClick();
     }
 
+    /**
+     * Root click event
+     */
     @OnClick(R.id.btn_root)
     public void onRootClick() {
         presenter.onRootClick();
     }
 
+    /**
+     * Evaluate click event
+     */
     @OnClick(R.id.btn_evaluate)
     public void onEvaluateClick() {
         presenter.onEvaluateClick();
@@ -124,7 +154,7 @@ public class CalculatorActivity extends BaseActivity
      * Update display result with error
      */
     @Override
-    public void showError() {
+    public void showError(String message) {
         displayResult.setText(R.string.error);
         displayResult.setTextColor(getResources().getColor(errorColor));
     }

@@ -5,6 +5,9 @@ import android.text.TextUtils;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
+/**
+ * Allows users to modify look and feel of the app
+ */
 public class CalculatorSettings extends BaseActivity {
 
     @Override
@@ -19,6 +22,11 @@ public class CalculatorSettings extends BaseActivity {
                 .commit();
     }
 
+    /**
+     * Updates theme
+     *
+     * @param currentTheme - current theme of the app
+     */
     @Override
     public void setAppTheme(String currentTheme) {
 

@@ -1,5 +1,8 @@
 package com.techaura.candycalculator;
 
+/**
+ * Contract of application
+ */
 public interface CalculatorContract {
 
     /**
@@ -10,11 +13,11 @@ public interface CalculatorContract {
 
         void showResult(String result);
 
-        void showError();
+        void showError(String message);
     }
 
     /**
-     * Events from keypad handled by Presenter
+     * Events from keypad handled by presenter
      */
     interface KeyPadToPresenter {
         void onDeleteShortClick();

@@ -1,11 +1,12 @@
 package com.techaura.candycalculator;
 
-import android.util.Log;
-
+/**
+ * Manages themes
+ */
 public class ThemeUtils {
 
     public static String identifyTheme(int theme) {
-        Log.e("NEW THEME", theme + "");
+        // Log.e("NEW THEME: ", theme + "");
 
         switch (theme) {
             case -14606047:
