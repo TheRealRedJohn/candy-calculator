@@ -14,11 +14,10 @@ import androidx.appcompat.app.AppCompatDelegate;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-    private String currentTheme; // current theme of app
-    private SharedPreferences sharedPreferences; // access new theme of app
-
     protected boolean isDark = false; // light or dark attribute of new theme (default: light)
     protected int errorColor = R.color.colorAccent; // text color of error message (default: light accent)
+    private String currentTheme; // current theme of app
+    private SharedPreferences sharedPreferences; // access new theme of app
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -21,12 +21,6 @@ public class ExpressionCalculation {
         this.ep = new Expression();
     }
 
-    public interface CalculationOutput {
-        void onExpressionChanged(String expression);
-
-        void onResultChanged(String result, boolean successful);
-    }
-
     public void setCalculationOutputListener(CalculationOutput calculationOutput) {
         this.calculationOutput = calculationOutput;
         currentExpression = "";
@@ -430,7 +424,6 @@ public class ExpressionCalculation {
         return true;
     }
 
-
     /**
      * Helper method to validateAppendOperator()
      *
@@ -529,6 +522,12 @@ public class ExpressionCalculation {
         }
 
         return false;
+    }
+
+    public interface CalculationOutput {
+        void onExpressionChanged(String expression);
+
+        void onResultChanged(String result, boolean successful);
     }
 
 }

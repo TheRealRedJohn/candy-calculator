@@ -17,15 +17,13 @@ import butterknife.OnLongClick;
 public class CalculatorActivity extends BaseActivity
         implements CalculatorContract.UpdateDisplayViews {
 
-    private CalculatorContract.KeyPadToPresenter presenter; // relays values to calculate
-
     // Expression
     @BindView(R.id.display_expression)
     TextView displayExpression;
-
     // Result
     @BindView(R.id.display_result)
     TextView displayResult;
+    private CalculatorContract.KeyPadToPresenter presenter; // relays values to calculate
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
