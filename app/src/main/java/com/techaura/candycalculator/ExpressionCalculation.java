@@ -292,6 +292,7 @@ public class ExpressionCalculation {
             resetDisplay();
         }
 
+        // do not allow .5 Instead do 0.5
         if (TextUtils.isEmpty(currentExpression)) {
             appendNumber("0");
             return true;

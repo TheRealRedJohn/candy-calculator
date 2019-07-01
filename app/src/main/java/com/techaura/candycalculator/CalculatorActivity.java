@@ -155,7 +155,7 @@ public class CalculatorActivity extends BaseActivity
      */
     @Override
     public void showError(String message) {
-        displayResult.setText(R.string.error);
+        displayResult.setText(message);
         displayResult.setTextColor(getResources().getColor(errorColor));
     }
 

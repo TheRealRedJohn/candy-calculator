@@ -55,7 +55,4 @@
     <!-- Number zero [CHAR_LIMIT=1] -->
     <string name="num_zero">0</string>
 
-    <!-- Error message [CHAR_LIMIT=12] -->
-    <string name="error">Error</string>
-
 </resources>
