@@ -78,8 +78,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             body = "\n\n-----------------------------\nPlease don't remove this information\n\n Device OS: Android \n Device OS version: " +
                     Build.VERSION.RELEASE + "\n App Version: " + body + "\n Device Brand: " + Build.BRAND +
                     "\n Device Model: " + Build.MODEL + "\n Device Manufacturer: " + Build.MANUFACTURER;
+
         } catch (PackageManager.NameNotFoundException e) {
-            body = "Please enter the following information\n\n Device OS\n Device OS Version\n Device Brand\n Device Model\n App Version";
+            body = "Please enter the following information alongside your feedback\n\n Device OS: Android" +
+                    "\n Device OS Version: \n Device Brand: \n Device Model: \n App Version: ";
         }
 
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
