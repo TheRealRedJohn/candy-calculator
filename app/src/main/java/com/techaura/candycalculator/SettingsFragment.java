@@ -86,7 +86,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
         emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{context.getString(R.string.feedback_summary)});
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{context.getString(R.string.email_address)});
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Candy Calculator Feedback");
         emailIntent.putExtra(Intent.EXTRA_TEXT, body);
 

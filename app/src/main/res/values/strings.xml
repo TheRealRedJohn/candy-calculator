@@ -69,8 +69,8 @@
     <!-- Privacy URL -->
     <string name="privacy_url">https://www.dropbox.com/scl/fi/n1erpyyii06tcyvr3cbgh/Privacy%20Policy.gdoc?dl=0&amp;rlkey=qieyvws9bidw9bvd609dyt4lm</string>
     <!-- Feedback summary [CHAR_LIMIT=NONE] -->
-    <string name="feedback_summary">hello.techaura@gmail.com</string>
-    <!-- Feedback summary [CHAR_LIMIT=NONE] -->
-    <string name="choose_email_client">Choose email client</string>
+    <string name="feedback_summary">Got questions? We\'ve got answers.</string>
+    <!-- Feedback summary -->
+    <string name="email_address">hello.techaura@gmail.com</string>
 
 </resources>
