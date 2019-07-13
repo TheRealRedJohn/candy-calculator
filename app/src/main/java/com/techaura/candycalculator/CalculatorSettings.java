@@ -73,4 +73,5 @@ public class CalculatorSettings extends BaseActivity {
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
+
 }

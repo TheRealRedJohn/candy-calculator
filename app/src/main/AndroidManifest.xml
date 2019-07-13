@@ -23,6 +23,7 @@
         <activity
             android:name=".CalculatorSettings"
             android:configChanges="orientation|screenSize"
+            android:label="@string/settings_page_title"
             android:parentActivityName=".CalculatorActivity"
             android:screenOrientation="nosensor"
             android:theme="@style/PreferenceTheme">

@@ -28,16 +28,23 @@
     </style>
 
     <!-- Dark Preference Theme. -->
-    <style name="PreferenceTheme" parent="BaseTheme">
+    <style name="PreferenceTheme" parent="Theme.MaterialComponents.Bridge">
         <item name="android:windowBackground">@color/darkColorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/darkColorPrimaryDark</item>
         <item name="android:navigationBarColor">?colorPrimaryDark</item>
+        <item name="android:actionBarStyle">@style/ActionBarTheme</item>
+        <item name="actionBarStyle">@style/ActionBarTheme</item>
     </style>
 
     <!-- Color Picker Dialog Theme. -->
     <style name="ThemeOverlay.Material.Dialog.ColorPicker" parent="@style/ThemeOverlay.AppCompat.Dialog">
         <item name="android:background">?colorPrimaryDark</item>
         <item name="alertDialogStyle">@style/AlertDialog.AppCompat</item>
+    </style>
+
+    <!--Action Bar Theme. -->
+    <style name="ActionBarTheme" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:background">?colorPrimaryDark</item>
     </style>
 
     <!-- Purple Theme -->
